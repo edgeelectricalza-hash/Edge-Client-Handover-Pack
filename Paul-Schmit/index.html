@@ -1,1 +1,604 @@
 
+Conversation with Gemini
+yesterday i spoke to you about a digital landing page for a handover pack for edge electrical
+
+I remember! We were putting together a digital landing page for Edge Electrical's client handover pack to give it a sharp, professional finishing touch.
+
+Are we continuing with that project, or did you need to make changes? Let me know where you'd like to pick up:
+
+Refining the layout or copy for specific sections (like warranties, maintenance guides, or sign-offs)
+
+Formatting/Styling (HTML/CSS, React, or no-code builder templates)
+
+Adding interactive components (e.g., download buttons, client feedback, or contact forms)
+
+What's the next step?
+
+we continuing with the project
+
+Excellent. Let's build out the structure and content modules for the Edge Electrical handover page. A professional digital handover should minimize cognitive load for the client while maximizing trust and future referral potential.
+
+Here is a recommended content architecture designed for high conversion and clarity.
+
+Proposed Page Structure
+Section	Purpose	Key Content Elements
+Hero	Instant confirmation	Project Name, "Handover Complete" badge, Date, and Lead Electrician name.
+Document Vault	Primary utility	Grid of labeled buttons (PDF icons) for CoC, Warranties, and Manuals.
+Maintenance	Proactive value	"Best practice" tips for system longevity (e.g., DB board checks).
+Referral/Review	Business growth	Direct link to Google Reviews and a "Refer a Neighbor" discount offer.
+Support	Retention	One-tap WhatsApp button and 24/7 emergency contact details.
+Refined Copy Draft
+Hero Header
+
+Project Handover: [Client Name/Site Address]
+Your electrical installation is complete, certified, and compliant. All relevant documentation is securely stored below for your records.
+
+The Document Vault
+(Use clear, distinct action buttons for each)
+
+[Download] Certificate of Compliance (CoC)
+
+[Download] Equipment Warranties & Data Sheets
+
+[Download] Installation Schematic / Floor Plan
+
+[Download] User Manuals (Smart Home/Lighting Control)
+
+Maintenance Tips (The "Edge" Difference)
+
+Keep your system running at peak performance with these simple habits:
+
+Quarterly: Test your Earth Leakage Unit (ELU) by pressing the "Test" button on your DB board.
+
+Annually: Schedule a visual inspection of external weather-proof sockets.
+
+Safety First: If you notice flickering lights or burning smells, isolate the circuit and call us immediately.
+
+Implementation Strategy
+If you are building this as a standalone web page, I recommend a mobile-first responsive design.
+
+Platform Choice: If you use Webflow, Squarespace, or Framer, use a "Link-in-Bio" style layout—single column, high-contrast buttons, and minimal navigation menus to keep the client focused on the handover docs.
+
+Security: Ensure the page is indexed as noindex, nofollow in your robots.txt or meta tags so these private client documents don't appear in public Google searches.
+
+Storage: Host the PDFs on a secure cloud drive (Google Drive/Dropbox) and link the buttons to those public-viewable URLs.
+
+Would you like me to generate the HTML/Tailwind CSS boilerplate for this page, or would you prefer a draft of the "Request for Review" email to send alongside this link?
+
+We can solidify the technical build or the client communication plan next:
+
+Generate HTML/CSS code for the landing page
+
+Draft a professional client handover email
+
+Create a checklist of must-have handover documents
+somehow i cant find our history chat so let me update you
+
+No problem at all—I’m ready to sync back up. Since I have access to your saved User Summary, I have your business context ready:
+
+Business: Edge Electrical & Solar (Port Elizabeth).
+
+Your Role: Electrician and solar installer (61 years old, pro-active, focused on quality/professionalism).
+
+Project Goal: You need a digital landing page to serve as a professional handover pack for your clients.
+
+Where we left off:
+We were structuring the page to be a "Document Vault" that builds trust and makes it easy for clients to find their CoC, warranties, and maintenance tips while also encouraging referrals.
+
+Please bring me up to speed on what you need right now:
+
+Are we building the technical side? (Do you want the code for this page?)
+
+Are we refining the content? (Did you have specific sections or branding ideas you wanted to add?)
+
+Do you have a specific client or project in mind? (If you're testing this for an upcoming job, let me know if we need to tailor the language.)
+
+What’s the priority for this session?
+
+we came across some problems... we used bithub. but the problem was that if i went to view a pdf file on my android phone it would say it cant open pdf. the conclusion we came to was that android does not have a built in pdf viewer and that could be the problem when opening it up in chrome. but if i opened it in firefox it open and operated perfectly. I will past the coding that we used in bithub.
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Handover Pack</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    </style>
+
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen block">
+
+    <main class="max-w-md w-full mx-auto px-4 py-8 pb-32 sm:px-6">
+
+
+
+        <!-- Header Branding Area -->
+
+        <div class="text-center mb-8">
+
+            <div class="inline-flex items-center justify-center mb-2">
+
+                <img src="logo.png" alt="Logo" class="w-32 h-32 object-scale-down rounded-full">
+
+            </div>
+
+            <h2 class="text-sm font-bold uppercase tracking-widest text-[#e65c00] block mb-1">
+
+                EDGE ELECTRICAL & SOLAR
+
+            </h2>
+
+            <h1 class="text-2xl font-bold tracking-tight text-slate-900 mt-1">
+
+                Digital Handover Pack
+
+            </h1>
+
+        </div>
+
+
+
+        <!-- Personal Greeting Block -->
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 mb-6 relative overflow-hidden">
+
+            <div class="absolute top-0 left-0 right-0 h-1 bg-[#e65c00]"></div>
+
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 mb-3">
+
+                Ready for Review
+
+            </span>
+
+            <h3 class="text-lg font-bold text-slate-900">
+
+                Welcome, Ryan Pope
+
+            </h3>
+
+            <p class="text-xs text-slate-500 mt-0.5">
+
+                32 Ruanne Street, Broadwood, Gqeberha, 6070
+
+            </p>
+
+            <p class="text-sm text-slate-600 mt-3 leading-relaxed">
+
+                Thank you for choosing Edge Electrical and Solar. Below you will find your solar installation documentation, manuals, and files.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- Client Document Vault Links -->
+
+        <div class="space-y-3 mb-8">
+
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">
+
+                Your Documentation
+
+            </h4>
+
+
+
+            <!-- Item 1 -->
+
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+
+                <div class="flex items-center gap-3 min-w-0">
+
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1a2 2 0 01-2 2H5"></path></svg>
+
+                    </div>
+
+                    <div class="min-w-0">
+
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Digital Handover Pack</h5>
+
+                        <p class="text-[11px] text-slate-400">PDF • 3.5 MB</p>
+
+                    </div>
+
+                </div>
+
+                <a href="docs/handover-pack.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">View</a>
+
+            </div>
+
+
+
+            <!-- Item 2 -->
+
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+
+                <div class="flex items-center gap-3 min-w-0">
+
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+
+                    </div>
+
+                    <div class="min-w-0">
+
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">System Line Diagram</h5>
+
+                        <p class="text-[11px] text-slate-400">PDF • 1.2 MB</p>
+
+                    </div>
+
+                </div>
+
+                <a href="docs/system-diagram.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">View</a>
+
+            </div>
+
+
+
+            <!-- Item 3 -->
+
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+
+                <div class="flex items-center gap-3 min-w-0">
+
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+
+                    </div>
+
+                    <div class="min-w-0">
+
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Certificate of Compliance (CoC)</h5>
+
+                        <p class="text-[11px] text-slate-400">PDF • 2.8 MB</p>
+
+                    </div>
+
+                </div>
+
+                <a href="docs/electrical-coc.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">View</a>
+
+            </div>
+
+
+
+            <!-- Item 4 -->
+
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+
+                <div class="flex items-center gap-3 min-w-0">
+
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+
+                    </div>
+
+                    <div class="min-w-0">
+
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Product Datasheets</h5>
+
+                        <p class="text-[11px] text-slate-400">ZIP • 8.4 MB</p>
+
+                    </div>
+
+                </div>
+
+                <a href="docs/product-datasheets.zip" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+
+            </div>
+
+
+
+            <!-- Item 5 -->
+
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+
+                <div class="flex items-center gap-3 min-w-0">
+
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.168.477-4 1.253"></path></svg>
+
+                    </div>
+
+                    <div class="min-w-0">
+
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Inverter & Battery Manuals</h5>
+
+                        <p class="text-[11px] text-slate-400">PDF • 5.1 MB</p>
+
+                    </div>
+
+                </div>
+
+                <a href="docs/inverter-battery-manuals.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">View</a>
+
+            </div>
+
+
+
+            <!-- Item 6 -->
+
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+
+                <div class="flex items-center gap-3 min-w-0">
+
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5a1.5 1.5 0 013 0v1"></path></svg>
+
+                    </div>
+
+                    <div class="min-w-0">
+
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">PV System Warranties</h5>
+
+                        <p class="text-[11px] text-slate-400">PDF • 1.9 MB</p>
+
+                    </div>
+
+                </div>
+
+                <a href="docs/pv-warranties.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">View</a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Help / Support Block -->
+
+        <div class="bg-slate-900 text-slate-100 rounded-2xl p-5 shadow-sm text-center mb-6 border-b-4 border-[#e65c00]">
+
+            <h5 class="text-sm font-semibold tracking-wide">Need Support?</h5>
+
+            <p class="text-xs text-slate-400 mt-1 mb-4">If you have any questions regarding your handover pack, reach out directly.</p>
+
+            <div class="flex flex-col gap-2 text-xs font-semibold">
+
+                <a href="tel:0680678804" class="text-white flex items-center justify-center gap-1.5 bg-slate-800 px-3 py-2.5 rounded-xl border border-slate-700/40 w-full block">
+
+                    Call: 068 067 8804
+
+                </a>
+
+                <a href="mailto:info@edgeelectrical.co.za" class="text-white flex items-center justify-center gap-1.5 bg-slate-800 px-3 py-2.5 rounded-xl border border-slate-700/40 w-full block">
+
+                    Email: info@edgeelectrical.co.za
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- System Footer -->
+
+        <footer class="text-center text-[10px] text-slate-400 font-medium">Secure Digital Handover System • EDGE ELECTRICAL & SOLAR</footer>
+
+
+
+    </main>
+
+</body>
+
+</html>
+
+The issue you experienced on Mobile Chrome is extremely common. Mobile Chrome on Android handles direct relative links to PDF files (<a href="docs/file.pdf" target="_blank">) by trying to pass the raw file to an internal viewer or external app. If the device doesn't have Google Drive or an explicit PDF handler configured as default for Chrome, Chrome often fails silently, shows a blank screen, or throws a "Cannot open PDF" / "File format not supported" error. Firefox, on the other hand, includes its own built-in PDF renderer (PDF.js) directly inside the browser.
+
+Why It Happens & How to Fix It
+Missing download Attribute: Without forcing a browser download, Chrome tries to display inline PDFs using whatever app the operating system assigns.
+
+Direct File Pathing: Android Chrome struggles with local relative paths (docs/file.pdf) when trying to pass them off to external viewer apps.
+
+Solution 1: Force Direct Download (Quickest Fix)
+Adding the download attribute to your HTML <a> tags forces Chrome to download the PDF file directly to the phone's "Downloads" folder, which then opens seamlessly via Android's default file viewer notification.
+
+Replace your current link buttons with:
+
+HTML
+<!-- Example for PDF Links -->
+<a href="docs/handover-pack.pdf" download="Edge_Electrical_Handover_Pack.pdf" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+Solution 2: Use Google Drive / Cloud Hosting Embeds (Best Client Experience)
+If you want clients to view the document directly in Chrome without downloading it first, upload your PDFs to Google Drive or OneDrive, set the permission to "Anyone with the link can view", and use Google's universal viewer preview link:
+
+HTML
+<a href="https://drive.google.com/viewerng/viewer?embedded=true&url=https://yourdomain.com/docs/handover-pack.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">View</a>
+Updated HTML Code with Fixes Applied
+Here is your cleaned-up code with the forced download fallbacks applied to ensure all PDF buttons work smoothly across Mobile Chrome, Safari, and Firefox.
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Handover Pack | Edge Electrical & Solar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen block">
+    <main class="max-w-md w-full mx-auto px-4 py-8 pb-32 sm:px-6">
+
+        <!-- Header Branding Area -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center mb-2">
+                <img src="logo.png" alt="Edge Electrical & Solar" class="w-32 h-32 object-scale-down rounded-full">
+            </div>
+            <h2 class="text-sm font-bold uppercase tracking-widest text-[#e65c00] block mb-1">
+                EDGE ELECTRICAL & SOLAR
+            </h2>
+            <h1 class="text-2xl font-bold tracking-tight text-slate-900 mt-1">
+                Digital Handover Pack
+            </h1>
+        </div>
+
+        <!-- Personal Greeting Block -->
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 mb-6 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-[#e65c00]"></div>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 mb-3">
+                Ready for Review
+            </span>
+            <h3 class="text-lg font-bold text-slate-900">
+                Welcome, Ryan Pope
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">
+                32 Ruanne Street, Broadwood, Gqeberha, 6070
+            </p>
+            <p class="text-sm text-slate-600 mt-3 leading-relaxed">
+                Thank you for choosing Edge Electrical and Solar. Below you will find your solar installation documentation, manuals, and files.
+            </p>
+        </div>
+
+        <!-- Client Document Vault Links -->
+        <div class="space-y-3 mb-8">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">
+                Your Documentation
+            </h4>
+
+            <!-- Item 1 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1a2 2 0 01-2 2H5"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Digital Handover Pack</h5>
+                        <p class="text-[11px] text-slate-400">PDF • 3.5 MB</p>
+                    </div>
+                </div>
+                <a href="docs/handover-pack.pdf" download="Handover-Pack.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">System Line Diagram</h5>
+                        <p class="text-[11px] text-slate-400">PDF • 1.2 MB</p>
+                    </div>
+                </div>
+                <a href="docs/system-diagram.pdf" download="System-Line-Diagram.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Certificate of Compliance (CoC)</h5>
+                        <p class="text-[11px] text-slate-400">PDF • 2.8 MB</p>
+                    </div>
+                </div>
+                <a href="docs/electrical-coc.pdf" download="Electrical-CoC.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Product Datasheets</h5>
+                        <p class="text-[11px] text-slate-400">ZIP • 8.4 MB</p>
+                    </div>
+                </div>
+                <a href="docs/product-datasheets.zip" download="Product-Datasheets.zip" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.168.477-4 1.253"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">Inverter & Battery Manuals</h5>
+                        <p class="text-[11px] text-slate-400">PDF • 5.1 MB</p>
+                    </div>
+                </div>
+                <a href="docs/inverter-battery-manuals.pdf" download="Inverter-Battery-Manuals.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-100 flex items-center justify-between group">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="p-2.5 bg-[#e65c00] text-white rounded-lg shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5a1.5 1.5 0 013 0v1"></path></svg>
+                    </div>
+                    <div class="min-w-0">
+                        <h5 class="text-sm font-semibold text-slate-800 truncate">PV System Warranties</h5>
+                        <p class="text-[11px] text-slate-400">PDF • 1.9 MB</p>
+                    </div>
+                </div>
+                <a href="docs/pv-warranties.pdf" download="PV-Warranties.pdf" target="_blank" class="px-4 py-1.5 bg-[#e65c00] text-white text-xs font-bold rounded-lg shrink-0">Download</a>
+            </div>
+        </div>
+
+        <!-- Help / Support Block -->
+        <div class="bg-slate-900 text-slate-100 rounded-2xl p-5 shadow-sm text-center mb-6 border-b-4 border-[#e65c00]">
+            <h5 class="text-sm font-semibold tracking-wide">Need Support?</h5>
+            <p class="text-xs text-slate-400 mt-1 mb-4">If you have any questions regarding your handover pack, reach out directly.</p>
+            <div class="flex flex-col gap-2 text-xs font-semibold">
+                <a href="tel:0680678804" class="text-white flex items-center justify-center gap-1.5 bg-slate-800 px-3 py-2.5 rounded-xl border border-slate-700/40 w-full block">
+                    Call: 068 067 8804
+                </a>
+                <a href="mailto:info@edgeelectrical.co.za" class="text-white flex items-center justify-center gap-1.5 bg-slate-800 px-3 py-2.5 rounded-xl border border-slate-700/40 w-full block">
+                    Email: info@edgeelectrical.co.za
+                </a>
+            </div>
+        </div>
+
+        <!-- System Footer -->
+        <footer class="text-center text-[10px] text-slate-400 font-medium">Secure Digital Handover System • EDGE ELECTRICAL & SOLAR</footer>
+
+    </main>
+</body>
+</html>
+
+
+
+Gemini is AI and can make mistakes.
+
