@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Electrical & Solar - Interactive Proposal Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#f59e0b',
+                            goldLight: '#fbbf24',
+                            dark: '#0f172a',
+                            navy: '#1e293b',
+                            accent: '#0284c7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="min-h-full flex flex-col justify-between bg-slate-950 text-slate-100">
+
+    <!-- HEADER / BRAND BAR -->
+    <header class="bg-slate-900/90 backdrop-blur border-b border-slate-800 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-100 tracking-tight">Edge Electrical & Solar</h1>
+                    <p class="text-xs text-amber-400 font-medium tracking-wide uppercase">Client Proposal Portal</p>
+                </div>
+            </div>
+
+            <!-- Status Indicator -->
+            <div id="statusBadge" class="hidden sm:flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 border border-slate-700">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- ACTIVE QUOTE VIEW (Shown when quote is valid) -->
+        <div id="activeQuoteView" class="space-y-8 hidden">
+            <!-- Project Header Summary Card -->
+            <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-12 -top-12 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="flex flex-col lg:flex-row justify-between lg:items-center gap-6 relative z-10">
+                    <div>
+                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-3">
+                            <i class="fa-solid fa-circle-check text-[10px] mr-1.5"></i> Custom Solar & Electrical Estimate
+                        </div>
+                        <h2 id="clientNameDisplay" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Residential Solar Proposal</h2>
+                        <p class="text-slate-400 text-sm mt-1">Prepared for: <span id="clientSubText" class="text-slate-200 font-medium">Valued Client</span></p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <div class="bg-slate-950/60 border border-slate-800 px-4 py-2.5 rounded-xl text-left">
+                            <span class="block text-xs text-slate-400 uppercase font-medium">Quote Expiration</span>
+                            <span id="expiryDisplay" class="text-sm font-bold text-amber-400">Loading...</span>
+                        </div>
+                        <a href="tel:+61000000000" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl transition duration-200 text-sm flex items-center shadow-lg shadow-amber-500/20">
+                            <i class="fa-solid fa-phone mr-2"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents & Datasheets Section -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-amber-400"></i> Included Documentation
+                    </h3>
+                    <span class="text-xs text-slate-400">Click any document to view or download</span>
+                </div>
+
+                <!-- Document Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="documentGrid">
+                    <!-- Cards will be enhanced by Mobile PDF optimizer logic -->
+                    
+                    <!-- 1. Formal Quote -->
+                    <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-5 transition duration-200 flex flex-col justify-between group shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">PDF Document</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white group-hover:text-amber-400 transition">Formal Quote & Estimate</h4>
+                            <p class="text-xs text-slate-400 mt-1">Detailed breakdown of equipment cost, labor, and warranty details.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <a href="docs/quote.pdf" class="pdf-link text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                                <span>Open Document</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <i class="fa-solid fa-download text-slate-500 hover:text-slate-300 text-xs cursor-pointer" onclick="triggerDirectDownload('docs/quote.pdf')"></i>
+                        </div>
+                    </div>
+
+                    <!-- 2. Solar System Proposal -->
+                    <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-5 transition duration-200 flex flex-col justify-between group shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-sun"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">PDF Document</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white group-hover:text-amber-400 transition">Solar Design Proposal</h4>
+                            <p class="text-xs text-slate-400 mt-1">System roof layout, expected kWh output production & ROI calculations.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <a href="docs/proposal.pdf" class="pdf-link text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                                <span>Open Document</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <i class="fa-solid fa-download text-slate-500 hover:text-slate-300 text-xs cursor-pointer" onclick="triggerDirectDownload('docs/proposal.pdf')"></i>
+                        </div>
+                    </div>
+
+                    <!-- 3. Solar Inverter Datasheet -->
+                    <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-5 transition duration-200 flex flex-col justify-between group shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">Datasheet</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white group-hover:text-amber-400 transition">Inverter Datasheet</h4>
+                            <p class="text-xs text-slate-400 mt-1">Full technical specs & manufacturer warranty for the proposed inverter.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <a href="docs/inverter-datasheet.pdf" class="pdf-link text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                                <span>Open Datasheet</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <i class="fa-solid fa-download text-slate-500 hover:text-slate-300 text-xs cursor-pointer" onclick="triggerDirectDownload('docs/inverter-datasheet.pdf')"></i>
+                        </div>
+                    </div>
+
+                    <!-- 4. Battery Storage Datasheet -->
+                    <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-5 transition duration-200 flex flex-col justify-between group shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-car-battery"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">Datasheet</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white group-hover:text-amber-400 transition">Battery Storage Specs</h4>
+                            <p class="text-xs text-slate-400 mt-1">Battery storage capacity, depth of discharge, and safety certifications.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <a href="docs/battery-datasheet.pdf" class="pdf-link text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                                <span>Open Datasheet</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <i class="fa-solid fa-download text-slate-500 hover:text-slate-300 text-xs cursor-pointer" onclick="triggerDirectDownload('docs/battery-datasheet.pdf')"></i>
+                        </div>
+                    </div>
+
+                    <!-- 5. Solar Panels Datasheet -->
+                    <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-5 transition duration-200 flex flex-col justify-between group shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-solar-panel"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">Datasheet</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white group-hover:text-amber-400 transition">Solar Panel Datasheet</h4>
+                            <p class="text-xs text-slate-400 mt-1">Tier-1 high efficiency solar module specifications & linear power warranty.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <a href="docs/panel-datasheet.pdf" class="pdf-link text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                                <span>Open Datasheet</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <i class="fa-solid fa-download text-slate-500 hover:text-slate-300 text-xs cursor-pointer" onclick="triggerDirectDownload('docs/panel-datasheet.pdf')"></i>
+                        </div>
+                    </div>
+
+                    <!-- 6. Terms & Install Conditions -->
+                    <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-5 transition duration-200 flex flex-col justify-between group shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-file-contract"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300">PDF Document</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-white group-hover:text-amber-400 transition">Terms & Install Info</h4>
+                            <p class="text-xs text-slate-400 mt-1">Installation process overview, grid connection standards & terms.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                            <a href="docs/terms.pdf" class="pdf-link text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                                <span>Open Terms</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <i class="fa-solid fa-download text-slate-500 hover:text-slate-300 text-xs cursor-pointer" onclick="triggerDirectDownload('docs/terms.pdf')"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPIRED QUOTE VIEW (Shown when current date > expires date) -->
+        <div id="expiredQuoteView" class="hidden py-12 max-w-2xl mx-auto text-center space-y-6">
+            <div class="w-20 h-20 bg-red-500/10 text-red-400 rounded-3xl border border-red-500/20 flex items-center justify-center text-4xl mx-auto shadow-xl shadow-red-500/10">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div class="space-y-2">
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">This Quote Has Expired</h2>
+                <p class="text-slate-400 text-base max-w-lg mx-auto">
+                    Equipment market prices and component availability are subject to change. The validity period for this quote package ended on 
+                    <span id="expiredDateDisplay" class="text-slate-200 font-bold underline decoration-amber-500"></span>.
+                </p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-left space-y-4">
+                <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-rotate text-amber-400"></i> What happens next?
+                </h3>
+                <ul class="text-sm text-slate-400 space-y-2">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                        <span>Contact our team to request a quick price refresh or validity extension.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                        <span>We will update the pricing for current solar rebate & equipment rates and issue a new link.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="tel:+61000000000" class="w-full sm:w-auto px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone"></i> Call Edge Electrical & Solar
+                </a>
+                <a href="mailto:info@edgeelectricalsolar.com?subject=Quote%20Extension%20Request" class="w-full sm:w-auto px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold rounded-xl border border-slate-700 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope"></i> Request Extension via Email
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER & STAFF QR CODE GENERATOR ACCORDION -->
+    <footer class="bg-slate-900/90 border-t border-slate-800 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            
+            <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>&copy; Edge Electrical & Solar. All Rights Reserved.</p>
+                <button id="toggleStaffToolBtn" class="text-amber-400/80 hover:text-amber-400 font-medium flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-qrcode"></i> Staff QR Code Generator Tool <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- STAFF GENERATOR DRAWER -->
+            <div id="staffToolDrawer" class="hidden bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-6">
+                <div class="border-b border-slate-800 pb-3 flex items-center justify-between">
+                    <div>
+                        <h4 class="text-base font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-screwdriver-wrench text-amber-400"></i> Edge Folder QR Code Generator
+                        </h4>
+                        <p class="text-xs text-slate-400">Generate a custom quote folder link with embedded expiry date and print-ready QR code.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Inputs -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Client Name (Optional)</label>
+                            <input type="text" id="inputClientName" placeholder="e.g. John Smith" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Quote Expiration Date</label>
+                                <input type="date" id="inputExpiryDate" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Preset Validity</label>
+                                <div class="flex gap-2">
+                                    <button type="button" onclick="setPresetDays(14)" class="flex-1 bg-slate-900 hover:bg-slate-800 text-xs py-2 rounded-xl text-slate-300 border border-slate-800">14 Days</button>
+                                    <button type="button" onclick="setPresetDays(30)" class="flex-1 bg-slate-900 hover:bg-slate-800 text-xs py-2 rounded-xl text-slate-300 border border-slate-800">30 Days</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Generated Quote Link</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="outputGeneratedUrl" readonly class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-amber-400 font-mono focus:outline-none">
+                                <button type="button" onclick="copyGeneratedUrl()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white rounded-xl border border-slate-700">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QR Display -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col items-center justify-center text-center space-y-3">
+                        <div id="qrcode" class="bg-white p-3 rounded-xl shadow-inner"></div>
+                        <p class="text-[11px] text-slate-400">Scan to preview or save QR image for print stickers on quote folders.</p>
+                        <button type="button" onclick="downloadQRCode()" class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition shadow">
+                            <i class="fa-solid fa-download mr-1"></i> Download QR Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Mobile Detection Utility
+        const isMobileDevice = () => {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        };
+
+        // 2. Mobile PDF Optimization Routine
+        function optimizePdfLinks() {
+            const isMobile = isMobileDevice();
+            const pdfLinks = document.querySelectorAll('.pdf-link');
+
+            pdfLinks.forEach(link => {
+                const rawUrl = link.getAttribute('href');
+                if (isMobile) {
+                    // Mobile: Set direct download & force download attribute to prevent white box error in mobile browsers
+                    link.setAttribute('download', '');
+                    const label = link.querySelector('span');
+                    if(label) label.textContent = 'Download Document';
+                } else {
+                    // Desktop: Open in tab viewer
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            });
+        }
+
+        // 3. Fallback direct download trigger
+        function triggerDirectDownload(url) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', '');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // 4. Time-Stamp Expiration Logic
+        function evaluateQuoteExpiration() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const expiresParam = urlParams.get('expires');
+            const clientParam = urlParams.get('client');
+
+            // Optional client name customizer
+            if (clientParam) {
+                document.getElementById('clientNameDisplay').textContent = `${decodeURIComponent(clientParam)} - Solar Proposal`;
+                document.getElementById('clientSubText').textContent = decodeURIComponent(clientParam);
+            }
+
+            const activeView = document.getElementById('activeQuoteView');
+            const expiredView = document.getElementById('expiredQuoteView');
+            const statusBadge = document.getElementById('statusBadge');
+            const expiryDisplay = document.getElementById('expiryDisplay');
+            const expiredDateDisplay = document.getElementById('expiredDateDisplay');
+
+            // Default fallback if no parameter provided (30 days from today)
+            let expiryDate;
+            if (expiresParam) {
+                // Supports YYYY-MM-DD or Unix timestamps
+                expiryDate = isNaN(expiresParam) ? new Date(expiresParam) : new Date(parseInt(expiresParam) * 1000);
+            } else {
+                const defaultDate = new Date();
+                defaultDate.setDate(defaultDate.getDate() + 30);
+                expiryDate = defaultDate;
+            }
+
+            const now = new Date();
+            // Reset hours for clean date comparison
+            now.setHours(0,0,0,0);
+            
+            const formattedDateStr = expiryDate.toLocaleDateString('en-AU', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+
+            if (isNaN(expiryDate.getTime()) || now > expiryDate) {
+                // QUOTE IS EXPIRED
+                activeView.classList.add('hidden');
+                expiredView.classList.remove('hidden');
+                expiredDateDisplay.textContent = formattedDateStr !== 'Invalid Date' ? formattedDateStr : 'Specified Expiry Date';
+                
+                statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> <span class="text-red-400">Expired</span>`;
+            } else {
+                // QUOTE IS VALID
+                activeView.classList.remove('hidden');
+                expiredView.classList.add('hidden');
+                expiryDisplay.textContent = formattedDateStr;
+
+                // Calculate days remaining
+                const diffTime = expiryDate - now;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> <span class="text-emerald-400">Valid (${diffDays} days remaining)</span>`;
+            }
+        }
+
+        // 5. Staff QR Generator Logic
+        let qrCodeInstance = null;
+
+        function initStaffGenerator() {
+            const toggleBtn = document.getElementById('toggleStaffToolBtn');
+            const drawer = document.getElementById('staffToolDrawer');
+            const dateInput = document.getElementById('inputExpiryDate');
+            const nameInput = document.getElementById('inputClientName');
+
+            toggleBtn.addEventListener('click', () => {
+                drawer.classList.toggle('hidden');
+            });
+
+            // Set default date to +14 days for staff input
+            const defaultExp = new Date();
+            defaultExp.setDate(defaultExp.getDate() + 14);
+            dateInput.value = defaultExp.toISOString().split('T')[0];
+
+            dateInput.addEventListener('change', generateStaffUrl);
+            nameInput.addEventListener('input', generateStaffUrl);
+
+            generateStaffUrl();
+        }
+
+        function setPresetDays(days) {
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + days);
+            document.getElementById('inputExpiryDate').value = targetDate.toISOString().split('T')[0];
+            generateStaffUrl();
+        }
+
+        function generateStaffUrl() {
+            const dateVal = document.getElementById('inputExpiryDate').value;
+            const nameVal = document.getElementById('inputClientName').value.trim();
+            const outputInput = document.getElementById('outputGeneratedUrl');
+            
+            // Base URL (strips query parameters)
+            const baseUrl = window.location.origin + window.location.pathname;
+            
+            let finalUrl = baseUrl;
+            const params = [];
+
+            if (dateVal) {
+                params.push(`expires=${dateVal}`);
+            }
+            if (nameVal) {
+                params.push(`client=${encodeURIComponent(nameVal)}`);
+            }
+
+            if (params.length > 0) {
+                finalUrl += `?${params.join('&')}`;
+            }
+
+            outputInput.value = finalUrl;
+            renderQRCode(finalUrl);
+        }
+
+        function renderQRCode(text) {
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+            qrCodeInstance = new QRCode(qrContainer, {
+                text: text,
+                width: 128,
+                height: 128,
+                colorDark : "#0f172a",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+
+        function copyGeneratedUrl() {
+            const copyText = document.getElementById('outputGeneratedUrl');
+            copyText.select();
+            document.execCommand('copy');
+            
+            const btn = event.target;
+            const origText = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = origText; }, 1800);
+        }
+
+        function downloadQRCode() {
+            const qrImg = document.querySelector('#qrcode img');
+            const qrCanvas = document.querySelector('#qrcode canvas');
+            
+            let imageSrc = '';
+            if (qrImg && qrImg.src) {
+                imageSrc = qrImg.src;
+            } else if (qrCanvas) {
+                imageSrc = qrCanvas.toDataURL('image/png');
+            }
+
+            if (imageSrc) {
+                const link = document.createElement('a');
+                link.href = imageSrc;
+                link.download = 'Edge_Quote_QR.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            optimizePdfLinks();
+            evaluateQuoteExpiration();
+            initStaffGenerator();
+        };
+    </script>
+</body>
+</html>
